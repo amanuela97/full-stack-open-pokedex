@@ -1,2 +1,7 @@
 dist/
 node_modules/
+cypress/videos/
+cypress/support/
+cypress/screenshots/
+cypress/plugins/
+cypress/fixtures/
