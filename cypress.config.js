@@ -1,11 +1,9 @@
 const { defineConfig } = require('cypress')
 
-export default defineConfig({
+module.exports = defineConfig({
   e2e: {
-    //non
     /* eslint-disable no-unused-vars */
-    setupNodeEvents(_on, _config) {
-      /* eslint-disable no-unused-vars */
+    setupNodeEvents(on, config) {
       // implement node event listeners here
     },
   },
