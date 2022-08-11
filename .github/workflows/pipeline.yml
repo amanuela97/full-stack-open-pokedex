@@ -33,3 +33,7 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: pokedex-97 # Must be unique in Heroku
           heroku_email: babyzewdie@gmail.com
+          healthcheck: 'https://pokedex-97.herokuapp.com/health'
+          checkstring: 'ok'
+          delay: 5
+          rollbackonhealthcheckfailed: true
