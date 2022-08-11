@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize] # the workflow will run when a PR into the main branch is opened or updated
 
 jobs:
   simple_deployment_pipeline:
