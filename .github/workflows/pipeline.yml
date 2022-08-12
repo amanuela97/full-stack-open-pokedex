@@ -50,9 +50,6 @@ jobs:
           details: commit made by ${{ github.event.head_commit.committer.name }} failed
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
           avatarUrl: ${{ github.repository.owner.avatar_url }}
-          if: ${{ failure() && steps.build.conclusion == 'failure'}}
-          text: Build Failed
-          if: ${{ failure() && steps.build.conclusion != 'failure'}}
           text: Job Failed
   tag_release:
     needs: [simple_deployment_pipeline] #depends on the first job
