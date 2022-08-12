@@ -49,7 +49,7 @@ jobs:
           severity: error
           details: commit made by ${{ github.event.head_commit.committer.name }} failed
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          avatarUrl: ${{ github.repository.owner.avatar_url }}
+          avatarUrl: https://avatars.githubusercontent.com/u/44023180?s=40&v=4
           text: Job Failed
   tag_release:
     needs: [simple_deployment_pipeline] #depends on the first job
@@ -72,4 +72,4 @@ jobs:
           text: A new version of Pokedex deployed.
           details: to 'https://pokedex-97.herokuapp.com/' by ${{ github.event.head_commit.committer.name }}
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          avatarUrl: ${{ github.repository.owner.avatar_url }}
+          avatarUrl: https://avatars.githubusercontent.com/u/44023180?s=40&v=4
