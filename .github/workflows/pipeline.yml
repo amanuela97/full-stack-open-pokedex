@@ -23,6 +23,7 @@ jobs:
       - name: test
         run: npm run test
       - name: build
+        id: build
         run: npm run build
       - name: e2e tests
         uses: cypress-io/github-action@f5bea478b80a774068179089247f13d60abc5010
@@ -41,6 +42,18 @@ jobs:
           checkstring: 'ok'
           delay: 5
           rollbackonhealthcheckfailed: true
+      - name: The job has failed
+        if: ${{ failure() }}
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+          severity: error
+          details: commit made by ${{ github.event.head_commit.committer.name }} failed
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          avatarUrl: ${{ github.repository.owner.avatar_url }}
+          if: ${{ failure() && steps.build.conclusion == 'failure'}}
+          text: Build Failed
+          if: ${{ failure() && steps.build.conclusion != 'failure'}}
+          text: Job Failed
   tag_release:
     needs: [simple_deployment_pipeline] #depends on the first job
     runs-on: ubuntu-20.04
@@ -54,3 +67,12 @@ jobs:
           DEFAULT_BUMP: patch
           RELEASE_BRANCHES: master
           WITH_V: true
+      - name: The job has succeeded
+        if: ${{ success() }}
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+          severity: info
+          text: A new version of Pokedex deployed.
+          details: to 'https://pokedex-97.herokuapp.com/' by ${{ github.event.head_commit.committer.name }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          avatarUrl: ${{ github.repository.owner.avatar_url }}
