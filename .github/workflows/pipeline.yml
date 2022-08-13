@@ -65,7 +65,7 @@ jobs:
           RELEASE_BRANCHES: master
           WITH_V: true
       - name: The job has succeeded
-        if: ${{ success() }}
+        if: ${{ success()  && !contains(join(github.event.commits.*.message), '#skip') }}
         uses: rjstone/discord-webhook-notify@v1
         with:
           severity: info

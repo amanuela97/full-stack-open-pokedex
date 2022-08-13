@@ -1,0 +1,29 @@
+name: health check
+
+on:
+  push:
+    branches:
+      - master
+
+#on:
+#  schedule:
+# * is a special character in YAML so you have to quote this string
+#    - cron:  '30 5,17 * * *'
+
+jobs:
+  periodic_health_check:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check the deployed service URL
+        uses: jtalk/url-health-check-action@d6ec9590f0f1bd173fa43aeac8b75c2270e9069d
+        with:
+          # Check the following URLs one by one sequentially
+          url: https://pokedex-97.herokuapp.com/pokemon/health | https://pokedex-97.herokuapp.com/pokemon/health
+          # Follow redirects, or just report success on 3xx status codes
+          follow-redirect: false # Optional, defaults to "false"
+          # Fail this action after this many failed attempts
+          max-attempts: 3 # Optional, defaults to 1
+          # Delay between retries
+          retry-delay: 10s # Optional, only applicable to max-attempts > 1
+          # Retry all errors, including 404. This option might trigger curl upgrade.
+          retry-all: false # Optional, defaults to "false"
