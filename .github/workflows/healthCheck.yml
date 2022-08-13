@@ -18,7 +18,7 @@ jobs:
         uses: jtalk/url-health-check-action@d6ec9590f0f1bd173fa43aeac8b75c2270e9069d
         with:
           # Check the following URLs one by one sequentially
-          url: https://pokedex-97.herokuapp.com/pokemon/health | https://pokedex-97.herokuapp.com/pokemon/health
+          url: https://pokedex-97.herokuapp.com/health | https://pokedex-97.herokuapp.com/pokemon/health
           # Follow redirects, or just report success on 3xx status codes
           follow-redirect: false # Optional, defaults to "false"
           # Fail this action after this many failed attempts
