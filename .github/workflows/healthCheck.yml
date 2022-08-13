@@ -18,12 +18,12 @@ jobs:
         uses: jtalk/url-health-check-action@d6ec9590f0f1bd173fa43aeac8b75c2270e9069d
         with:
           # Check the following URLs one by one sequentially
-          url: https://pokedex-97.herokuapp.com/health | https://pokedex-97.herokuapp.com/pokemon/health
+          url: https://pokedex-97.herokuapp.com/
           # Follow redirects, or just report success on 3xx status codes
           follow-redirect: false # Optional, defaults to "false"
           # Fail this action after this many failed attempts
-          max-attempts: 3 # Optional, defaults to 1
+          max-attempts: 2 # Optional, defaults to 1
           # Delay between retries
-          retry-delay: 10s # Optional, only applicable to max-attempts > 1
+          retry-delay: 20s # Optional, only applicable to max-attempts > 1
           # Retry all errors, including 404. This option might trigger curl upgrade.
           retry-all: false # Optional, defaults to "false"
